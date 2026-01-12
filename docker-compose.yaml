@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    build: ./db
+    container_name: pg_db
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - db-services
+
+  app:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "3000:4440"
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: db
+      PORT: 4440
+    depends_on:
+      - db
+    networks:
+      - db-services
+
+networks:
+  db-services:
+    driver: bridge
+
+volumes:
+  pg_data:
