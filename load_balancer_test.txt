@@ -1,0 +1,1 @@
+for /L %i in (1,1,5000) do curl http://localhost:8080/auth/health
