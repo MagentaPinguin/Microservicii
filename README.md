@@ -1,4 +1,4 @@
-SOA Project
+# SOA Project
 
 In a perfect world where everything works on the first try and nothing crashes mysteriously… </br>
 This project is an attempt to use microservices hosted in Docker containers. The project launches multiple instances of the containers, while routing and load balancing are handled by Nginx.
